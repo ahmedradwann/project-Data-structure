@@ -2,68 +2,52 @@
 #ifndef stack_h
 #define stack_h
 #include "classes decleration.h"
-using namespace std;
-class stack_dynamic
-{
-private:
-	struct Node
-	{
-		int data;;
-		node* next;
-
-
-		node(int data, node* next = NULL;)
-		{
-			this->data = data;
-			this->next = next;
-
-
-		}
-	};
-	node* top;
-public:
-	stack_dynamic()
-	{
-
-		top = NULL;
-	}
-	void push(int element);
-	int pop();
-	bool Is_Empty();
-};
-void stack_dynamic::push(int element)
-{
-
-	top = new Node(element, top);
-
-
-
+#include <assert.h>
+template <class T>
+stack_Dynamic<T>::stack_Dynamic(int size){
+    arr=new int[size];
+    this->size=size;
+    top=-1;
+    counter=0;
 }
-int stack_dynamic::pop()
-{
-	int element = top->data;
-	Node* temp = new Node;
-	temp = top;
-	top = top->next;
-	delete temp;
-	return element;
-
+template <class T>
+void stack_Dynamic<T>::push(T element){
+    if(IsFull()){
+        cout<<"over flow\n";
+        return;
+    }
+    arr[++top]=element;
+    counter++;
 }
-
-bool stack_dynamic::Is_Empty()
-{
-	if (top == NULL)
-	{
-		cout << "it is true " << endl;
-		return 1;
-
-	}
-	else
-	{
-		cout << " it is false " << endl;
-		return 0;
-
-
-	}
+template <class T>
+T stack_Dynamic<T>::pop(){
+    if(IsEmpty()){
+        cout<<"under flow\n";
+        assert(!IsEmpty());
+    }
+    counter--;
+    return arr[top--];
+}
+template <class T>
+bool stack_Dynamic<T>::IsEmpty(){
+    return top==-1;
+}
+template <class T>
+T stack_Dynamic<T>::peak(){
+    return arr[top];
+}
+template <class T>
+bool stack_Dynamic<T>::IsFull(){
+    return top==size-1;
+}
+template <class T>
+void stack_Dynamic<T>::display(){
+    for(int i=top;i>=0;i--)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+}
+template <class T>
+stack_Dynamic<T>::~stack_Dynamic(){
+    delete arr;
 }
 #endif /* stack_h */

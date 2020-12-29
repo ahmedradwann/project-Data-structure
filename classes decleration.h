@@ -97,17 +97,17 @@ template <class T>
 class stack_Dynamic{
     int counter;
     T *arr;
-    int top;
+    int top,size;
 public:
-    stack_Dynamic();
+    stack_Dynamic(int size);
     void push(T val);
     T pop();
     T peak();
     int number_of_element(){return counter;}
     bool IsFull();
     bool IsEmpty();
-    ~stack_Dynamic();
-};
+    void display();
+    ~stack_Dynamic();};
 template <class T>
 class stack_liked_list : public linked_list<T>{
 public:
