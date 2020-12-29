@@ -26,7 +26,7 @@ public:
     void deletion_at_position(int pos);
     int number_of_element();
     void display();
-    
+    ~linked_list();
 };
 template <class T>
 class linked_list_double{
@@ -40,6 +40,8 @@ public:
     void isert_at_position(int pos,T val);
     T deletion_at_position(int pos);
     void display();
+    ~linked_list_double();
+
 };
 template <class T>
 class linked_list_circular{
@@ -53,6 +55,7 @@ public:
     void isert_at_position(int pos,T val);
     T deletion_at_position(int pos);
     void display();
+    ~linked_list_circular();
 };
 template <class T>
 class linked_list_double_circular{
@@ -66,6 +69,7 @@ class linked_list_double_circular{
         void isert_at_position(int pos,T val);
         T deletion_at_position(int pos);
         void display();
+    ~linked_list_double_circular();
     };
 template <class T>
 class stack_array{
@@ -94,6 +98,7 @@ public:
     int number_of_element(){return counter;}
     bool IsFull();
     bool IsEmpty();
+    ~stack_Dynamic();
 };
 template <class T>
 class stack_liked_list : public linked_list<T>{
@@ -125,6 +130,8 @@ public:
     T dequeue();
     bool IsFull();
     bool IsEmpty();
+    ~queue_linked_list();
+
 };
 template <class T>
 class queue_circular_array{
@@ -146,5 +153,6 @@ class queue_circular_linked_list : public linked_list<T>{
     T dequeue();
     bool IsFull();
     bool IsEmpty();
+    ~queue_circular_linked_list();
 };
 #endif /* classes_decleration_h */
