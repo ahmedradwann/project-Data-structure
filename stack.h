@@ -3,67 +3,46 @@
 #define stack_h
 #include "classes decleration.h"
 using namespace std;
-class stack_dynamic
-{
-private:
-	struct Node
-	{
-		int data;;
-		node* next;
-
-
-		node(int data, node* next = NULL;)
-		{
-			this->data = data;
-			this->next = next;
-
-
-		}
-	};
-	node* top;
-public:
-	stack_dynamic()
-	{
-
-		top = NULL;
-	}
-	void push(int element);
-	int pop();
-	bool Is_Empty();
-};
-void stack_dynamic::push(int element)
-{
-
-	top = new Node(element, top);
-
-
-
+template <class T>
+int stack_array<T> ::number_of_element() {
+	return counter;
 }
-int stack_dynamic::pop()
-{
-	int element = top->data;
-	Node* temp = new Node;
-	temp = top;
-	top = top->next;
-	delete temp;
-	return element;
+template <class T>
+bool stack_array<T>::isEmpty() {
 
-}
-
-bool stack_dynamic::Is_Empty()
-{
-	if (top == NULL)
-	{
-		cout << "it is true " << endl;
+	if (top == -1)
 		return 1;
+	return 0;
+}
+template <class T>
+bool stack_array<T> ::isFull() {
+	if (top == MAX - 1)
+		return 1;
+	return 0;
+}
+template <class T>
+stack_array<T>::stack_array() {
+	top = -1;
+	counter = 0;
+}
+template <class T>
+void stack_array<T> ::push(T val) {
 
+	if (!isFull()) {
+		arr[++top] = val;
+		counter++;
 	}
 	else
-	{
-		cout << " it is false " << endl;
-		return 0;
+		return;
 
+}
+template <class T>
+T stack_array<T>::pop() {
 
+	if (!isEmpty()) {
+		counter--;
+		return arr[top--];
 	}
+	exit(0);
 }
 #endif /* stack_h */
