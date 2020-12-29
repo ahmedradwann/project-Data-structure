@@ -8,14 +8,14 @@ int stack_array<T> ::number_of_element() {
 	return counter;
 }
 template <class T>
-bool stack_array<T>::isEmpty() {
+bool stack_array<T>::IsEmpty() {
 
 	if (top == -1)
 		return 1;
 	return 0;
 }
 template <class T>
-bool stack_array<T> ::isFull() {
+bool stack_array<T> ::IsFull() {
 	if (top == MAX - 1)
 		return 1;
 	return 0;
