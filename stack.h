@@ -50,6 +50,7 @@ void stack_Dynamic<T>::display(){
 template <class T>
 stack_Dynamic<T>::~stack_Dynamic(){
     delete arr;
+}
 =======
 template <class T>
 bool stack_array<T>::IsEmpty() {
