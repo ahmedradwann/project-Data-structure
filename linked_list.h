@@ -2,7 +2,9 @@
 #ifndef linked_list_h
 #define linked_list_h
 #include "classes decleration.h"
+
 //single linked list
+
 template <class T>
 linked_list<T>::linked_list(){
     head=NULL;
@@ -118,5 +120,177 @@ void linked_list<T>:: display(){
     }
     cout<<endl;
 }
+template <class T>
+linked_list<T>::~linked_list(){
+    node<T> *temp=NULL;
+    while(head!=NULL){
+        temp=head;
+        temp->next=NULL;
+        delete temp;
+        head=head->next;
+    }
+}
 
+//double linked list
+
+template <class T>
+linked_list_double<T>::linked_list_double(){
+    count=0;
+    head=tail=NULL;
+}
+template <class T>
+void linked_list_double<T>::insert_first(T val){
+    Double_node<T> *new_node=new Double_node<T>;
+    new_node->next=NULL;
+    new_node->prev=NULL;
+    new_node->val=val;
+    count++;
+    if(head==NULL){
+        head=tail=new_node;
+    }
+    else{
+        head->prev=new_node;
+        new_node->next=head;
+        head=new_node;
+    }
+}
+template <class T>
+void linked_list_double<T>::deletion_first(){
+    if(head==NULL){
+        cout<<"under flow\n";
+        return;
+    }
+    count--;
+    Double_node<T> *temp=head;
+    if(head==tail){
+        temp=NULL;
+        delete temp;
+        head=tail=NULL;
+    }
+    else{
+    head=head->next;
+    head->prev=NULL;
+    temp->next=NULL;
+    delete temp;
+    }
+}
+template <class T>
+void linked_list_double<T>::insert_last(T val){
+    Double_node<T> *new_node=new Double_node<T>;
+    new_node->next=NULL;
+    new_node->prev=NULL;
+    new_node->val=val;
+    if(head==NULL){
+        head=tail=new_node;
+    }
+    else{
+        tail->next=new_node;
+        new_node->prev=tail;
+        tail=new_node;
+    }
+    count++;
+}
+template <class T>
+void linked_list_double<T>::deletion_last(){
+    if(head==NULL){
+        cout<<"under flow\n";
+        return;
+    }
+    count--;
+    Double_node<T> *temp=tail;
+    if(head==tail){
+        temp=NULL;
+        delete temp;
+        head=tail=NULL;
+    }
+    else{
+    tail=tail->prev;
+    tail->next=NULL;
+    temp->prev=NULL;
+    delete temp;
+    }
+}
+template <class T>
+void linked_list_double<T>::isert_at_position(int pos,T val){
+    if(pos>count){
+        cout<<"this posision not found\n";
+        return;
+    }
+    Double_node<T> *new_node=new Double_node<T>;
+    new_node->next=NULL;
+    new_node->prev=NULL;
+    new_node->val=val;
+    count++;
+    if(pos==0)
+        insert_first(val);
+    else if(pos==count)
+        insert_last(val);
+    else{
+        Double_node<T> *temp=head;
+        for(int i=0;i<pos-1;i++)
+            temp=temp->next;
+        new_node->next=temp->next;
+        new_node->prev=temp;
+        temp->next=new_node;
+        temp=temp->next->next;
+        temp->prev=new_node;
+    }
+}
+template <class T>
+void linked_list_double<T>::deletion_at_position(int pos){
+    if(pos>count){
+        cout<<"this posision not found\n";
+        return;
+    }
+    Double_node<T> *cur=head,*temp=NULL;
+    if(pos==0)
+        deletion_first();
+    else if(pos==count)
+        deletion_last();
+    else{
+        for(int i=0;i<pos;i++)
+            cur=cur->next;
+        temp=cur->prev;
+        temp->next=cur->next;
+        temp=cur->next;
+        temp->prev=cur->prev;
+        cur->prev=NULL;
+        cur->next=NULL;
+        delete cur;
+        count--;
+    }
+}
+template <class T>
+int linked_list_double<T>::number_of_element(){
+    return count;
+}
+template <class T>
+void linked_list_double<T>::display_from_start(){
+    Double_node<T> *temp=head;
+    while(temp!=NULL){
+        cout<<temp->val<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+template <class T>
+void linked_list_double<T>::display_from_end(){
+    Double_node<T> *temp=tail;
+    while(temp!=NULL){
+        cout<<temp->val<<" ";
+        temp=temp->prev;
+    }
+    cout<<endl;
+}
+template <class T>
+linked_list_double<T>::~linked_list_double(){
+    Double_node<T> *temp=NULL;
+    while(head!=NULL){
+        temp=head;
+        temp->prev=NULL;
+        temp->next=NULL;
+        delete temp;
+        head=head->next;
+    }
+}
 #endif /* linked_list_h */
