@@ -10,7 +10,6 @@ template <class T>
 struct Double_node{
     T val;
     node<T> *next,*prev;
-};
 template <class T>
 class linked_list{
 protected:
@@ -130,6 +129,7 @@ public:
     int number_of_element(){return counter;}
     bool IsFull();
     bool IsEmpty();
+    void display();
 };
 template <class T>
 class queue_linked_list : public linked_list<T>{
@@ -140,6 +140,7 @@ public:
     bool IsFull();
     bool IsEmpty();
     ~queue_linked_list();
+    void display();
 
 };
 template <class T>
@@ -154,6 +155,7 @@ public:
     int number_of_element(){return counter;}
     bool IsFull();
     bool IsEmpty();
+    void display();
 };
 template <class T>
 class queue_circular_linked_list : public linked_list<T>{
@@ -163,5 +165,6 @@ class queue_circular_linked_list : public linked_list<T>{
     bool IsFull();
     bool IsEmpty();
     ~queue_circular_linked_list();
+    void display();
 };
 #endif /* classes_decleration_h */
