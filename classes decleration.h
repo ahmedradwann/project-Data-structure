@@ -2,23 +2,28 @@
 #define classes_decleration_h
 #define MAX 100
 template <class T>
-class node{
+struct node{
     T val;
     node* next;
 };
 template <class T>
+struct Double_node{
+    T val;
+    node<T> *next,*prev;
+};
+template <class T>
 class linked_list{
 protected:
-    node<T> *head;
-    int count=0;
+    node<T> *head,*tail;
+    int count;
 public:
     linked_list();
     void insert_first(T val);
-    T deletion_first();
+    void deletion_first();
     void insert_last(T val);
-    T deletion_last();
-    void isert_after_position(int pos,T val);
-    T deletion_at_position(int pos);
+    void deletion_last();
+    void isert_after_value(T val_linked,T val_add);
+    void deletion_at_position(int pos);
     int number_of_element();
     void display();
     
