@@ -30,45 +30,54 @@ public:
 };
 template <class T>
 class linked_list_double{
-    node<T> *head,*tail;
+    Double_node<T> *head,*tail;
+    int count;
 public:
     linked_list_double();
     void insert_first(T val);
-    T deletion_first();
+    void deletion_first();
     void insert_last(T val);
-    T deletion_last();
+    void deletion_last();
     void isert_at_position(int pos,T val);
-    T deletion_at_position(int pos);
-    void display();
+    void deletion_at_position(int pos);
+    int number_of_element()
+    void display_from_start();
+    void display_from_end();
     ~linked_list_double();
 
 };
 template <class T>
 class linked_list_circular{
-    node<T> *head;
+    node<T> *head,*tail;
+    int count;
 public:
     linked_list_circular();
     void insert_first(T val);
-    T deletion_first();
+    void deletion_first();
     void insert_last(T val);
-    T deletion_last();
+    void deletion_last();
     void isert_at_position(int pos,T val);
-    T deletion_at_position(int pos);
+    void deletion_at_position(int pos);
     void display();
+    int number_of_element();
     ~linked_list_circular();
 };
+
 template <class T>
 class linked_list_double_circular{
-        node<T> *head,*tail;
+    Double_node<T> *head,*tail;
+        int count;
     public:
         linked_list_double_circular();
         void insert_first(T val);
-        T deletion_first();
+        void deletion_first();
         void insert_last(T val);
-        T deletion_last();
+        void deletion_last();
         void isert_at_position(int pos,T val);
-        T deletion_at_position(int pos);
-        void display();
+        void deletion_at_position(int pos);
+        int number_of_element();
+        void display_from_start();
+        void display_from_end();
     ~linked_list_double_circular();
     };
 template <class T>
