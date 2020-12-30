@@ -2,7 +2,7 @@
 #ifndef stack_h
 #define stack_h
 #include "classes decleration.h"
-using namespace std;
+
 template <class T>
 int stack_array<T> ::number_of_element() {
 	return counter;
