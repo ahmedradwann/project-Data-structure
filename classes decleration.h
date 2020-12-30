@@ -116,6 +116,7 @@ public:
     T peak();
     bool IsFull();
     bool IsEmpty();
+    void dispaly_stack();
 };
 template <class T>
 class queue_array{

@@ -2,8 +2,9 @@
 #ifndef stack_h
 #define stack_h
 #include "classes decleration.h"
-<<<<<<< HEAD
+//<<<<<<< HEAD
 #include <assert.h>
+//Dynamic stack
 template <class T>
 stack_Dynamic<T>::stack_Dynamic(int size){
     arr=new int[size];
@@ -51,7 +52,11 @@ template <class T>
 stack_Dynamic<T>::~stack_Dynamic(){
     delete arr;
 }
-=======
+
+//fixed stack
+
+
+//=======
 template <class T>
 bool stack_array<T>::IsEmpty() {
 
@@ -89,6 +94,35 @@ T stack_array<T>::pop() {
 		return arr[top--];
 	}
 	exit(0);
->>>>>>> 0b51f7191445dd1287ba565cccad7352a2d1c343
+//>>>>>>> 0b51f7191445dd1287ba565cccad7352a2d1c343
 }
+//stack using linked list
+
+template <class T>
+void stack_liked_list<T>::push(T val){
+    this->insert_first(val);
+}
+template <class T>
+T stack_liked_list<T>::pop(){
+    T val;
+    val =this->head->val;
+    this->deletion_first();
+    return val;
+}
+template <class T>
+T stack_liked_list<T>::peak(){
+    T val;
+    val =this->head->val;
+    return val;
+}
+template <class T>
+bool stack_liked_list<T>::IsEmpty(){
+    return this->number_of_element()==0;
+}
+template <class T>
+void stack_liked_list<T>::dispaly_stack(){
+    this->display();
+}
+
+
 #endif /* stack_h */
