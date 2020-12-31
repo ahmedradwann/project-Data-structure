@@ -1,6 +1,8 @@
 #ifndef assignments_implement
 #define assignments_implement
 #include "assignments decleration.h"
+
+// Assignment 4
 template<class T>
 queue_by_stack<T>::queue_by_stack() {
 	que = new T[MAX];
@@ -72,6 +74,82 @@ int queue_by_stack<T> ::deque() {
 	que = s2.que;
 
 	return val;
+}
+
+// Assignment 1
+template<class T>
+linked_list_ASS<T>::linked_list_ASS() {
+
+	head = tail = NULL;
+	count = 0;
+
+}
+template<class T>
+int linked_list_ASS<T>::number_of_element() {
+
+	return count;
+}
+template<class T>
+void linked_list_ASS<T>::creat_or_insert(int value, int choice) {
+
+	node<T>* neww;
+	neww = new node<T>;
+	neww->val = value;
+	neww->next = NULL;
+	count++;
+	if (choice == 1) {
+		if (head == NULL) {
+			head = neww;
+			tail = neww;
+
+		}
+		else {
+			neww->next = head;
+			head = neww;
+
+		}
+
+	}
+	else if (choice == 2) {
+
+		if (head == NULL) {
+			head = tail = neww;
+		}
+		else {
+			tail->next = neww;
+			tail = neww;
+
+		}
+
+
+	}
+	else if (choice == 3) {
+		int pos;
+
+		cout << " enter the position : ";
+		cin >> pos;
+		node<T>* current = head;
+
+		for (int i = 1; pos - 1 > i; i++) {
+			current = current->next;
+		}
+		neww->next = current->next;
+		current->next = neww;
+	}
+
+
+}
+
+template<class T>
+void linked_list_ASS<T>::display_the_elements() {
+	node<T>* current = head;
+
+	while (current != NULL)
+	{
+		cout << current->val << " " << endl;
+		current = current->next;
+
+	}
 }
 #endif // !assignments_implement
 
