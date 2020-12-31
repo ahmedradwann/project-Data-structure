@@ -20,6 +20,7 @@ public:
     void insert_first(T val);
     void deletion_first();
     void insert_last(T val);
+    void insert_at_position(int pos, T element);
     void deletion_last();
     void isert_after_value(T val_linked,T val_add);
     void deletion_at_position(int pos);
@@ -107,7 +108,8 @@ public:
     bool IsFull();
     bool IsEmpty();
     void display();
-    ~stack_Dynamic();};
+    ~stack_Dynamic();
+};
 template <class T>
 class stack_liked_list : public linked_list<T>{
 public:

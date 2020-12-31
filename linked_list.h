@@ -46,6 +46,19 @@ void linked_list<T>::deletion_first(){
     }
 }
 template <class T>
+void linked_list<T>::insert_at_position(int pos, T element)
+{
+    node<T>* temp = new node<T>;
+    temp->val = element;
+    temp->next = NULL;
+    node<T>* current = head;
+        for(int i=0;i<pos-1;i++){
+            current=current->next;
+        }
+        temp->next = current->next;
+        current->next = temp;
+}
+template <class T>
 void linked_list<T>::insert_last(T val){
     node<T> *new_node=new node<T>;
     new_node->next=NULL;
