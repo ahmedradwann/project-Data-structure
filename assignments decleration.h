@@ -10,12 +10,12 @@ public:
 };
 //template <class T>
 // لو في ايرور شيل الدبل // من كلاس تيمبليت
-class post_fix_evaluate: public stack_Dynamic<int>{
+class post_fix_evaluate : public stack_Dynamic<int> {
     //size are send in constractor as aprametar and put it equal size variable in base class
     post_fix_evaluate(int size);
     void push();
     int pop();
-}
+};
 class poly{
     node* head,*last;
 public:
@@ -28,10 +28,16 @@ public:
     void display();
 };
 template <class T>
-class queue_using_stack: public stack_Dynamic<T>{
+class queue_using_stack{
+    T* que;
+    int top;
 public:
-    void enqueue(T val);
-    void dequeue();
+    queue_by_stack();
+    void push(T);
+    T pop();
+    bool isEmpty();
+    bool isfull();
     void display();
+    T deque();
 };
 #endif /* assignments_decleration_h */
