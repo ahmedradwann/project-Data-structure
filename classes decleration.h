@@ -1,6 +1,10 @@
 #ifndef classes_decleration_h
 #define classes_decleration_h
 #define MAX 100
+struct node_poly{
+    int num,pow;
+    node* next;
+};
 template <class T>
 struct node{
     T val;

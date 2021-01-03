@@ -91,6 +91,207 @@ void linked_list_ASS<T>::Creat_or_insert(T val){
 
 //assignment 3
 
+template <>
+post_fix_evaluate<float>::post_fix_evaluate(int size):stack_Dynamic<float>(size){
+}
+template <>
+void post_fix_evaluate<float>::push(float val){
+    this->stack_Dynamic<float>::push(val);
+}
+template <>
+float post_fix_evaluate<float>::pop(){
+    return this->stack_Dynamic<float>::pop();
+}
+string get_string(){
+    string equ;
+        cout<<"please, Enter the expression if operand > 9 put it betwean ( )\n";
+        cout<<"Expression : ";
+        cin>>equ;
+    return equ;
+}
+float process(string equ){
+    post_fix_evaluate<float> obj((int)equ.size());
+        int i{0};
+    float sum{0},val1{0},val2{0};
+        while(equ[i]!='\0'){
+            if(isdigit(equ[i])){
+                obj.push(equ[i]-'0');
+                i++;
+            }
+            else if(equ[i]=='('||equ[i]==')'){
+                while(equ[i]!=')'){
+                    i++;
+                    sum+=equ[i]-'0';
+                    i++;
+                    if(isdigit(equ[i])){
+                        sum*=10;
+                        sum+=equ[i]-'0';
+                    }
+                    i++;
+                }
+                obj.push(sum);
+                sum=0;
+                i++;
+                
+            }
+            else{
+                switch (equ[i]) {
+                    case '+':
+                        sum=obj.pop()+obj.pop();
+                        obj.push(sum);
+                        sum=0;
+                        break;
+                    case '-':
+                        val1=obj.pop();
+                        val2=obj.pop();
+                        sum=val2-val1;
+                        obj.push(sum);
+                        sum=0;
+                        break;
+                    case '*':
+                        sum=obj.pop()*obj.pop();
+                        obj.push(sum);
+                        sum=0;
+                        break;
+                    case '/':
+                        val1=(float)obj.pop();
+                        val2=(float)obj.pop();
+                        sum=(float)val2/val1;
+                        obj.push(sum);
+                        sum=0;
+                        break;
+                    case '^':
+                        val1=obj.pop();
+                        val2=obj.pop();
+                        sum=pow(val2,val1);
+                        obj.push(sum);
+                        sum=0;
+                        break;
+                    default:
+                        break;
+                }
+                i++;
+            }
+        }
+        return obj.pop();
+}
+//assignment 2
 
+void poly::insert(int num, int pow){
+    node* cur=head;
+    while(cur!=NULL){
+        if(pow==cur->pow){
+            cur->num+=num;
+            return;
+        }
+        cur=cur->next;
+    }
+    cur=head;
+    node* new_node=new node;
+    new_node->num=num;
+    new_node->pow=pow;
+    new_node->next=NULL;
+    if(head==NULL)
+        head=last=new_node;
+    else if(cur->pow<pow){
+        new_node->next=head;
+        head=new_node;
+     }
+    else if(last->pow>pow){
+        last->next=new_node;
+        last=new_node;
+     }
+    else{
+        while(cur->next!=NULL){
+        if(cur->next->pow>pow)
+        cur=cur->next;
+     }
+     new_node->next=cur->next;
+     cur->next=new_node;
+     }
+}
+node* poly::add(poly obj,poly obj2){
+    poly obj3;
+    node* p1=obj.get_node(),* p2=obj2.get_node();
+    while(p1!=NULL&&p2!=NULL){
+        if(p1->pow>p2->pow){
+            obj3.insert(p1->num, p1->pow);
+            p1=p1->next;
+        }
+        else if(p1->pow<p2->pow){
+            obj3.insert(p2->num, p2->pow);
+            p2=p2->next;
+        }
+        else {
+            obj3.insert(p2->num+p1->num, p2->pow);
+            p1=p1->next;
+            p2=p2->next;
+        }
+    }
+    while(p1!=NULL||p2!=NULL){
+        if(p1!=NULL){
+            obj3.insert(p1->num, p1->pow);
+            p1=p1->next;
+        }
+        else if(p2!=NULL){
+            obj3.insert(p2->num, p2->pow);
+            p2=p2->next;
+        }
+    }
+    return obj3.get_node();
+}
+void poly::display(){
+    node *cur=head;
+    while(cur!=NULL){
+        cout<<cur->num<<" X^ "<<cur->pow;
+        if(cur->next!=NULL)
+            cout<<" + ";
+        cur=cur->next;
+    }
+    cout<<endl;
+}
+void equ(string eq1,poly &obj){
+    int num{0},pow{0};
+    for(int i=0;eq1[i]!='\0';i++){
+        if(isdigit(eq1[i])&&eq1[i+1]=='\0')
+        {
+            num=(int)eq1[i]-'0';
+            pow=0;
+            obj.insert(num, pow);
+            return;
+        }
+         if(isdigit(eq1[i])&&eq1[i+1]=='x'){
+            num=(int)eq1[i]-'0';
+        }
+        else if(eq1[i-1]=='x'&&eq1[i]=='^'){
+            pow=(int)eq1[i+1]-'0';
+        }
+        else if(eq1[i]=='+'||(isdigit(eq1[i])&&eq1[i+1]=='\0')){
+            obj.insert(num, pow);
+        }
+    }
+}
+void result(node* p1,node* p2,node* p3){
+    poly obj;
+    obj.set_node(p1);
+    cout<<endl;
+    cout<<"\t";
+    obj.display();
+    cout<<"+\n";
+    cout<<"\t";
+    obj.set_node(p2);
+    obj.display();
+    cout<<"=\n";
+    cout<<"\t";
+    obj.set_node(p3);
+    obj.display();
+    cout<<endl;
+}
+string get_str(){
+    string s1;
+    cout<<"enter the  equation : ";
+    cin>>s1;
+    return s1;
+}
 
 #endif
